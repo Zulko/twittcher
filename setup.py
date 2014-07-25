@@ -8,8 +8,9 @@ exec(open('twittcher/version.py').read()) # loads __version__
 setup(name='twittcher',
       version=__version__,
       author='Zulko',
-    description='',
+    description=("Watch tweets on Twitter's user pages or search pages."),
     long_description=open('README.rst').read(),
     license='see LICENSE.txt',
-    keywords="",
+    keywords="Twitter tweet search bot",
+    install_requires=['bs4'],
     packages= find_packages(exclude='docs'))
