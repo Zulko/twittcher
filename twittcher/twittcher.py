@@ -63,8 +63,7 @@ class PageWatcher:
                  if ("class" in a.attrs) and
                  (self.a_class in a.attrs["class"])]
         
-        text_attr = zip(texts, attrs)[::-1]
-        tweets = [Tweet(txt, a) for (txt, a) in text_attr]
+        tweets = [Tweet(txt, a) for (txt, a) in zip(texts, attrs)]
         new_tweets = [t for t in tweets if t not in self.seen_tweets]
 
         self.seen_tweets += new_tweets
@@ -102,7 +101,7 @@ class UserWatcher(PageWatcher):
 
     def __init__(self, username, action=print, database=None):
         PageWatcher.__init__(self, action, database)
-        self.url = "https://twitter.com//"+username
+        self.url = "https://twitter.com/"+username
         self.username = username
         self.p_class = "ProfileTweet-text" 
         self.a_class = "ProfileTweet-timestamp"
