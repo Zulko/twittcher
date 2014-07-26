@@ -1,11 +1,11 @@
 Twittcher
 ==========
 
-Twittcher (for *Twitter-watcher*) is a Python module to make bots that will watch a Twitter user page or search page, and react to the tweets.
+Twittcher (for *twitter-watcher*) is a Python module to make bots that will watch a Twitter user page or search page, and react to the tweets.
 
-It's simple, small (currently ~150 lines of code), and requires no account on Twitter or Twitter.dev. (it doesn't use the Twitter API, it directly parses the HTML).
+It's simple, small (currently ~150 lines of code), and doesn't require any registration on Twitter or *dev.twitter.com*, as it doesn't depend on the Twitter API (instead it parses the HTML).
 
-Twittcher is an open-source software originally written by Zulko_, and released under the MIT licence. The project is hosted on Github_, where you can report bugs, propose impovements, etc.
+Twittcher is an open-source software originally written by Zulko_, and released under the MIT licence. The project is hosted on Github_, where you can report bugs, propose improvements, etc.
 
 Install
 --------
@@ -20,7 +20,7 @@ Else, download the sources (on Github_ or PyPI_), and in the same directory as t
     
     (sudo) python setup.py install
 
-Twittcher requires the Python package bs4 (a.k.a. BeautifulSoup), which will be automatically installed when twittcher is installed.
+Twittcher requires the Python package BeautifulSoup (a.k.a. bs4), which will be automatically installed when twittcher is installed.
 
 
 Examples of use
