@@ -12,10 +12,12 @@ Install
 
 If you have `pip`, install twittcher by typing in a terminal:
 ::
+    
     (sudo) pip install twittcher
 
 Else, download the sources (on Github_ or PyPI_), and in the same directory as the `setup.py` file, type this in a terminal:
 ::
+    
     (sudo) python setup.py install
 
 Twittcher requires the Python package bs4 (a.k.a. BeautifulSoup), which will be automatically installed when twittcher is installed.
@@ -31,11 +33,13 @@ There is currently no documentation for Twittcher, but the following examples sh
 
 Every 120 seconds, print all the new tweets by John D. Cook:
 ::
+    
     from twittcher import UserWatcher
     UserWatcher("JohnDCook").watch_every(120)
 
 Result:
 ::
+    
     Kicking off some simulations before I quit work for the day. #dejavu
       Author: JohnDCook
       Date: 15:43 - 24 juil. 2014
@@ -49,6 +53,7 @@ Result:
 The default action of `UserWatcher` is to print the tweets, but you can ask any other action instead.
 For instance, here is how to only print the tweets that are actually written by John D. Cook (not the ones he retweets):
 ::
+    
     from twittcher import UserWatcher
     
     def my_action(tweet):
@@ -61,9 +66,10 @@ For instance, here is how to only print the tweets that are actually written by 
 2. Control a distant machine through Twitter !
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Every 60 seconds, for any of my new tweets of the form ``md: my_command``, run ``my_command`` in a terminal.
+Every 60 seconds, for any of my new tweets of the form ``cmd: my_command``, run ``my_command`` in a terminal.
 Using simple tweets I can control any distant computer running this script.
 ::
+    
     import subprocess
     from twittcher import UserWatcher
 
@@ -84,14 +90,15 @@ For instance, the tweet ``cmd: firefox`` will open Firefox on the computer, and 
 
 Every 20 seconds, send me all the new tweets in the Twitter search results for `chocolate milk`.
 ::
-from twittcher import TweetSender, SearchWatcher
-sender = TweetSender(smtp="smtp.gmail.com", port=587,
-                     login="tintin.zulko@gmail.com",
-                     password="fibo112358", # be nice, don't try.
-                     to_addrs="tintin.zulko@gmail.com", # where to send
-                     sender_id = "chocolate milk")
-bot = SearchWatcher("chocolate milk", action=sender.send)
-bot.watch_every(20)
+    
+    from twittcher import TweetSender, SearchWatcher
+    sender = TweetSender(smtp="smtp.gmail.com", port=587,
+                         login="tintin.zulko@gmail.com",
+                         password="fibo112358", # be nice, don't try.
+                         to_addrs="tintin.zulko@gmail.com", # where to send
+                         sender_id = "chocolate milk")
+    bot = SearchWatcher("chocolate milk", action=sender.send)
+    bot.watch_every(20)
 
 4. Multibot watching
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -99,6 +106,7 @@ bot.watch_every(20)
 If you want to run several bots at once, make sure that you leave a few seconds between the requests of the different bots.
 Here is how you print the new tweets of John D. Cook, Mathbabe, and Eolas. Each of them is watched every minute, with 20 seconds between the requests of two bots:
 ::
+    
     import time
     import itertools
     from twittcher import UserWatcher
@@ -116,6 +124,7 @@ Here is how you print the new tweets of John D. Cook, Mathbabe, and Eolas. Each 
 
 A bot can save to a file the tweets that it has already seen, so that in future sessions it will remember not to process these tweets again, in case they still appear on the watched page.
 ::
+    
     from twittcher import SearchWatcher
     bot = SearchWatcher("chocolate milk", database="choco.db")
     bot.watch_every(20)
