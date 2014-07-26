@@ -12,5 +12,5 @@ setup(name='twittcher',
     long_description=open('README.rst').read(),
     license='see LICENSE.txt',
     keywords="Twitter tweet search bot",
-    install_requires=['bs4'],
+    install_requires=['beautifulsoup'],
     packages= find_packages(exclude='docs'))

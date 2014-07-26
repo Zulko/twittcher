@@ -52,7 +52,7 @@ For instance, here is how to print only the tweets that are actually written by 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Every 60 seconds, for any of my new tweets of the form ``md: my_command``, run ``my_command`` in a terminal.
-When this script is running on a computer, I can control that computer using tweets !
+Using simple tweets I can control any distant computer running this script.
 ::
     import subprocess
     from twittcher import UserWatcher
@@ -60,13 +60,13 @@ When this script is running on a computer, I can control that computer using twe
     def my_action(tweet):
         """ Execute the tweet's command, if any. """
         if tweet.text.startswith("cmd: "):
-            subprocess.Popen( tweet.text[5:] )
+            subprocess.Popen( tweet.text[5:], shell=True )
 
     # Watch my account and react to my tweets
     bot = UserWatcher("Zulko___", action=my_action)
     bot.watch_every(60)
 
-For instance, the tweet ``cmd: firefox`` will open Firefox on the computer, and the tweet ``cmd: youtube-dl FNf-IGmxElI`` will ask the computer to download a video of a tiny hamster eating a tiny pizza.
+For instance, the tweet ``cmd: firefox`` will open Firefox on the computer, and the tweet ``cmd: echo "Hello"`` will have the computer print Hello in a terminal.
 
 
 3. Watch search results and send alert mails
@@ -77,11 +77,10 @@ Every 600 seconds, send me all the new tweets in the Twitter search results for 
     from twittcher import TweetSender, SearchWatcher
 
     sender = TweetSender(smtp="smtp.gmail.com", port=587,
-                         login="mr.zulko@gmail.com",
-                         password="fibo112358",
+                         login="tintin.zulko@gmail.com",
+                         password="fibo112358", # be nice, don't try
                          address="mr.zulko@gmail.com",
                          name = "chocolate milk")
-
     bot = SearchWatcher("chocolate milk", action= sender.send)
     bot.watch_every(600)
 
