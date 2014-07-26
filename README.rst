@@ -24,7 +24,7 @@ Twittcher requires the Python package bs4 (a.k.a. BeautifulSoup), which will be 
 Examples of use
 ----------------
 
-For the moment there is no documentation for Twittcher (other than the docstrings of the functions) but the following examples will show everything you need to get started.
+There is currently no documentation for Twittcher, but the following examples should show you everything you need to get started.
 
 1. Print the tweets of a given user
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -51,7 +51,7 @@ For instance, here is how to print only the tweets that are actually written by 
 2. Control a distant machine through Twitter !
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Every 60 seconds, for any of my new tweets of the form `cmd: my_command`, run `my_command` in a terminal.
+Every 60 seconds, for any of my new tweets of the form ``md: my_command``, run ``my_command`` in a terminal.
 When this script is running on a computer, I can control that computer using tweets !
 ::
     import subprocess
@@ -60,13 +60,13 @@ When this script is running on a computer, I can control that computer using twe
     def my_action(tweet):
         """ Execute the tweet's command, if any. """
         if tweet.text.startswith("cmd: "):
-            subprocess.Popen( tweet.text[5:].split(" ") )
+            subprocess.Popen( tweet.text[5:] )
 
     # Watch my account and react to my tweets
     bot = UserWatcher("Zulko___", action=my_action)
     bot.watch_every(60)
 
-For instance, the tweet `cmd: firefox` will open Firefox on the computer, and the tweet `cmd: youtube-dl FNf-IGmxElI` will ask the computer to download this video of a tiny hamster eating a tiny pizza.
+For instance, the tweet ``cmd: firefox`` will open Firefox on the computer, and the tweet ``cmd: youtube-dl FNf-IGmxElI`` will ask the computer to download a video of a tiny hamster eating a tiny pizza.
 
 
 3. Watch search results and send alert mails
