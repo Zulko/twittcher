@@ -1,7 +1,7 @@
 Twittcher
 ==========
 
-Twittcher (for *twitter-watcher*) is a Python module to make bots that will watch a Twitter user page or search page, and react to the tweets.
+Twittcher (for *twitter-watcher*) is a Python module to make bots that will watch a Twitter user page or search page, and react to the tweets they find.
 
 It's simple, small (currently ~150 lines of code), and doesn't require any registration on Twitter or *dev.twitter.com*, as it doesn't depend on the Twitter API (instead it parses the HTML).
 
