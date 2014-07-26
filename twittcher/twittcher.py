@@ -146,25 +146,26 @@ class TweetSender:
     >>> bot.watch_every(600)
     """
 
-    def __init__(self, smtp,port,login, password, address=None,
-                 name="Bot"):
+    def __init__(self, smtp, port, login, password, to_addrs=None,
+                 from_addrs="twittcher@noanswer.com", sender_id=""):
         # Configure the smtp, store email address
-        if address is None:
-            address = "login"
+        if to_addrs is None:
+            to_addrs = login
         self.server = smtplib.SMTP(smtp, port)
         self.server.starttls()
         self.server.login(login, password)
-        self.address = address
-        self.name = name
+        self.to_addrs = to_addrs
+        self.from_addrs = from_addrs
+        self.sender_id = sender_id
 
 
     def make_message(self, tweet):
-        return ("\n".join(["From: Twittcher <twittcher@noanswer.com>",
-                           "To: Myself <%(address)s>",
-                           "Subject: Twittcher[ %(name)s ]: New tweet !",
+        return ("\n".join(["From: <%(from_addrs)s>",
+                           "To: <%(to_addrs)s>",
+                           "Subject: Twittcher[ %(sender_id)s ]: New tweet !",
                            "", str(tweet)]))%(self.__dict__)
 
 
     def send(self, tweet):
-        self.server.sendmail(self.email, self.email,
+        self.server.sendmail(self.from_addrs, self.to_addrs,
                              self.make_message(tweet))

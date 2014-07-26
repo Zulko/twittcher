@@ -35,9 +35,19 @@ Every 120 seconds, print all the new tweets by John D. Cook:
     UserWatcher("JohnDCook").watch_every(120)
 
 Result:
+::
+    Kicking off some simulations before I quit work for the day. #dejavu
+      Author: JohnDCook
+      Date: 15:43 - 24 juil. 2014
+      Link: https://twitter.com/JohnDCook/status/492440083073859585
+    “Too often we enjoy the comfort of opinion without the discomfort of thought." -- John F. Kennedy,
+      Author: JerryWeinberg
+      Date: 13:18 - 24 juil. 2014
+      Link: https://twitter.com/JerryWeinberg/status/492403371975114752
+
     
 The default action of `UserWatcher` is to print the tweets, but you can ask any other action instead.
-For instance, here is how to print only the tweets that are actually written by John D. Cook (not his retweets):
+For instance, here is how to only print the tweets that are actually written by John D. Cook (not the ones he retweets):
 ::
     from twittcher import UserWatcher
     
@@ -72,18 +82,16 @@ For instance, the tweet ``cmd: firefox`` will open Firefox on the computer, and 
 3. Watch search results and send alert mails
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Every 600 seconds, send me all the new tweets in the Twitter search results for `chocolate milk`.
+Every 20 seconds, send me all the new tweets in the Twitter search results for `chocolate milk`.
 ::
-    from twittcher import TweetSender, SearchWatcher
-
-    sender = TweetSender(smtp="smtp.gmail.com", port=587,
-                         login="tintin.zulko@gmail.com",
-                         password="fibo112358", # be nice, don't try
-                         address="mr.zulko@gmail.com",
-                         name = "chocolate milk")
-    bot = SearchWatcher("chocolate milk", action= sender.send)
-    bot.watch_every(600)
-
+from twittcher import TweetSender, SearchWatcher
+sender = TweetSender(smtp="smtp.gmail.com", port=587,
+                     login="tintin.zulko@gmail.com",
+                     password="fibo112358", # be nice, don't try.
+                     to_addrs="tintin.zulko@gmail.com", # where to send
+                     sender_id = "chocolate milk")
+bot = SearchWatcher("chocolate milk", action=sender.send)
+bot.watch_every(20)
 
 4. Multibot watching
 ~~~~~~~~~~~~~~~~~~~~~~~~
