@@ -18,9 +18,9 @@ class Tweet:
     
     def __init__(self, text, attrs):
         self.text = text.encode('utf8')
-        self.username = attrs["href"].split("/")[1]
-        self.date = attrs['title']
-        self.link = "https://twitter.com" + attrs["href"]
+        self.username = (attrs["href"].split("/")[1]).encode('utf8')
+        self.date = attrs['title'].encode('utf8')
+        self.link = ("https://twitter.com" + attrs["href"]).encode('utf8')
     
     def __eq__(self, other):
         """ Two tweets are the same if they have the same address."""
